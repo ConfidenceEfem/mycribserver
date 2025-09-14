@@ -3,7 +3,7 @@ import { UserModel } from "../../model/user.model";
 import { HttpCode } from "../../utils/AppError";
 import { AsyncHandler } from "../../utils/AsyncHandler";
 import { NextFunction, Request, Response } from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { createAccessToken, createRefreshToken } from "./token.service";
 import otpGenerator from "otp-generator";
 import { otpModel } from "../../model/otp.model";
