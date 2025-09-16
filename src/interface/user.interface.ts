@@ -8,6 +8,7 @@ export interface IUser extends Document{
     password: string,
     token: Object,
     phoneNumber: string,
+    whatsappLink: string,
     userType: string,
     isEmailVerified: boolean,
     

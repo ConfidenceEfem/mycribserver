@@ -8,8 +8,9 @@ const UserSchema = new mongoose.Schema<IUser>({
     password: { type: String,trim: true, required: true },
     phoneNumber: { type: String, trim: true,required: true },
     avatarUrl: { type: String, default: ""},
+    whatsappLink: { type: String, default: ""},
     token: { type: Object, default: "" },
-    userType: { type: String, trim: true, default: "user" },
+    userType: { type: String, trim: true, default: "student" },
     isEmailVerified: { type: Boolean, trim: true,default: false }
 }, {
     timestamps: true,

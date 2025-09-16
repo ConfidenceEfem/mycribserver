@@ -22,13 +22,31 @@ const ListingSchema = new mongoose.Schema<IListings>({
         type: Boolean,
         default: false,
     },
+    isSold: {
+        type: Boolean,
+        default: false,
+    },
     numberOfRoomates: {
         type: Number,
         required: true,
     },
-
+    location: {
+        type: String,
+        required: true
+    },
+    qualities: {
+        type: [],
+    },
+    numberOfLove:{
+        type: Number,
+        default: 0
+    },
+    numberOfBookmark:{
+        type: Number,
+        default: 0
+    },
     agentId: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     }
 }, {
