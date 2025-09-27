@@ -8,6 +8,7 @@ import { createAccessToken, createRefreshToken } from "./token.service";
 import otpGenerator from "otp-generator";
 import { otpModel } from "../../model/otp.model";
 import { sendOTP } from "../../config/sendMail";
+import { on } from "events";
 
 // generate otp
 
@@ -129,10 +130,21 @@ export const loginUser = AsyncHandler(
         });
     }
 
-    const { password: _removedPassword, ...doc } = findUser?.toObject();
-    const accessToken = createAccessToken(doc);
+    console.log(findUser, "this is the found user on login")
 
-    const refreshToken = createRefreshToken(doc);
+   const { password: _removedPassword, ...doc } = findUser?.toObject();
+
+   const objectId = {
+    _id: findUser?._id,
+    userType: findUser?.userType,
+   }
+
+   console.log(objectId, "this is the object data for login token")
+
+
+    const accessToken = createAccessToken(objectId);
+
+    const refreshToken = createRefreshToken(objectId);
 
     const token = {accessToken, refreshToken};
 
@@ -176,18 +188,30 @@ export const verifyEmail = AsyncHandler(
 
     await otpModel.deleteMany({ email });
 
+    console.log(updateUser, "this is the updated user")
+
 
     if (updateUser) {
       const { password: any, ...doc } = updateUser;
 
+       const objectId = {
+    _id: updateUser?._id,
+    userType: updateUser?.userType,
+   }
+
+   console.log(objectId, "this is the object data for token")
+
+
       // create access token
-      const accessToken = createAccessToken(doc);
-      const refreshToken = createRefreshToken(doc);
+      const accessToken = createAccessToken(objectId);
+      const refreshToken = createRefreshToken(objectId);
 
       const token = { accessToken, refreshToken };
 
       updateUser.token = token
       await updateUser.save();
+
+      console.log(updateUser, "this is the updated user after saving token")
 
       return res
         .status(HttpCode.OK)

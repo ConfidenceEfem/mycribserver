@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 export interface IListings extends Document{
     title: string,
     price: number,
-    image: Array<any>,
+    myImages: string[],
     description: string,
     typeOfLodge: string,
     location: string,

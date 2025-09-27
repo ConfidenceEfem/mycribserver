@@ -1,12 +1,12 @@
-// import userTaskRouter from "../router/user.task.route";
+import userRouter from "../router/user.router";
+import listingRouter from "../router/listing.router";
 import userAuthRouter from "../router/user.auth.route";
 import { Router } from "express";
-// import UserRouter from "../router/user.route";
 
 const router = Router()
 
 router.use("/auth", userAuthRouter)
-// router.use("/user", UserRouter)
-// router.use("/task", userTaskRouter)
+router.use("/listing", listingRouter)
+router.use("/user", userRouter)
 
 export default router

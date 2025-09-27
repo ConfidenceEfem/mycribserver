@@ -28,7 +28,8 @@ const ListingSchema = new mongoose.Schema<IListings>({
     },
     numberOfRoomates: {
         type: Number,
-        required: true,
+        // required: true,
+        default: 0,
     },
     location: {
         type: String,
@@ -44,6 +45,10 @@ const ListingSchema = new mongoose.Schema<IListings>({
     numberOfBookmark:{
         type: Number,
         default: 0
+    },
+    myImages: {
+        type: [String],
+        default: []
     },
     agentId: {
         type: mongoose.Schema.Types.ObjectId,

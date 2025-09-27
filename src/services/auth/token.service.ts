@@ -14,11 +14,13 @@ import { IUserToken } from "../../interface/user.token.interface"
   }
 
 export const createAccessToken = (payload: Object) => {
+    console.log(payload, "this is payload from create access token")
    const accessToken = jwt.sign(payload, EnvironmentalVariables.JWT_SECRET as string, {expiresIn: "1d"})
    return accessToken
 }
 
 export const createRefreshToken = (payload: Object) => {
+    console.log(payload, "this is payload from create refresh token")
     const refreshToken = jwt.sign(payload, EnvironmentalVariables.JWT_SECRET as string, {expiresIn: "7d"})
     return refreshToken 
 }
@@ -56,6 +58,8 @@ export const verifyAcessToken = AsyncHandler(async (req: Request, res: Response,
                 isOperational: true
             })
         }
+
+        console.log(payload, "this is payload from verify access token")
 
         req.user = payload as IUserToken
 
@@ -96,6 +100,8 @@ export const verifyRefreshToken = AsyncHandler(async (req: Request, res: Respons
                 isOperational: true
             })
         }
+
+        console.log(payload, "this is payload from verify refresh token")
 
         req.user = payload as IUserToken
 
